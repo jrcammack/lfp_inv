@@ -1,0 +1,7 @@
+{
+  "name": "herokuApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,3 +1,10 @@
+const {Client} = require('pg')
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 var express = require('express'),
     app = express();
 
@@ -12,6 +19,9 @@ app.all('*', function(req, res, next) {
 
 // API Routes
 // app.get('/blah', routeHandler);
+app.get('/test', (req, res) => {
+    res.send('congrats you got a response')
+})
 
 app.set('port', process.env.PORT || 4200);
 

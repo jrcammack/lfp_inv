@@ -1,4 +1,6 @@
 const {Client} = require('pg');
+var express = require('express'),
+    app = express();
 const client = new Client({
     connectionString: 'postgres://rginsovtyjyftl:2985f824783ec0d74a99c632fa0f6af3341111c9b31955b9b4f2fea7f51631a4@ec2-34-202-127-5.compute-1.amazonaws.com:5432/d834vb4v3rn4aa', //process.env.DATABASE_URL,
     ssl: {
@@ -6,8 +8,7 @@ const client = new Client({
     }
 });
 client.connect();
-var express = require('express'),
-    app = express();
+
 
 app.use(express.static('dist'));
 

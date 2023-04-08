@@ -16,14 +16,14 @@ export class CategorySelectorComponent  implements OnInit {
   selectedSubCat : SubCategory = new SubCategory(0, 0, 'Undefined');
   
   constructor(private http: HttpClient) { 
-    http.get('http://localhost:4201/categories').subscribe(rspData => {
+    http.get('https://lfp-inv.herokuapp.com/categories').subscribe(rspData => {
       let data: any = rspData;
       for (let row of data.rows) {
         this.categories.push(new Category(row.category_id, row.category_name));
       }
     });
 
-    http.get('http://localhost:4201/subcategories').subscribe(rspData => {
+    http.get('https://lfp-inv.herokuapp.com/subcategories').subscribe(rspData => {
       let data: any = rspData;
       for (let row of data.rows) {
         this.subcategories.push(new SubCategory(row.sub_category_id, row.category_id, row.sub_category_name));

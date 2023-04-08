@@ -16,21 +16,19 @@ export class CategorySelectorComponent  implements OnInit {
   selectedSubCat : SubCategory = new SubCategory(0, 0, 'Undefined');
   
   constructor(private http: HttpClient) { 
-    http.get('https://lfp-inv.herokuapp.com/categories').subscribe(rspData => {
+    http.get(/*'https://lfp-inv.herokuapp.com/categories'*/'http://localhost:4201/categories').subscribe(rspData => {
       let data: any = rspData;
       for (let row of data.rows) {
         this.categories.push(new Category(row.category_id, row.category_name));
       }
     });
 
-    http.get('https://lfp-inv.herokuapp.com/subcategories').subscribe(rspData => {
+    http.get(/*'https://lfp-inv.herokuapp.com/subcategories'*/'http://localhost:4201/subcategories').subscribe(rspData => {
       let data: any = rspData;
       for (let row of data.rows) {
         this.subcategories.push(new SubCategory(row.sub_category_id, row.category_id, row.sub_category_name));
       }
     });
-
-    console.log(this.subcategories);
   }
 
   ngOnInit() {}
@@ -42,6 +40,7 @@ export class CategorySelectorComponent  implements OnInit {
       return this.selectedCat.id == currentSubCat.categoryID
     })
     console.log('The ' + CatData.name + ' has been selected!');
+    console.log(this.filteredSubcategories);
   }
 
   onSubCatItemSelect(subCat: SubCategory) {

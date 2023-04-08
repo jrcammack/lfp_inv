@@ -12,10 +12,10 @@
             </div>
             <div class="modal-body">
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sub-Categories <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
+                    <app-sub-cat-link [filteredSubCategories]="filteredSubcategories" (subCatSelected)="onSubCatItemSelect($event)"></app-sub-cat-link>
+                    <!-- <ul class="dropdown-menu">
                         <li *ngFor="let subCategory of filteredSubcategories"><app-sub-cat-link (subCatSelected)="onSubCatItemSelect($event)" [subcategory]="subCategory"></app-sub-cat-link></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             <div class="modal-footer">

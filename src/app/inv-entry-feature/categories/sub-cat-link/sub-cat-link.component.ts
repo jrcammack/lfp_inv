@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SubCategory } from '../subcategory.model';
 
 @Component({
@@ -6,12 +6,18 @@ import { SubCategory } from '../subcategory.model';
   templateUrl: './sub-cat-link.component.html',
   styleUrls: ['./sub-cat-link.component.css']
 })
-export class SubCatLinkComponent {
+export class SubCatLinkComponent implements OnInit {
   @Input() subcategory: SubCategory = new SubCategory(0, 0, 'Undefined');
+  @Input() filteredSubCategories: SubCategory[] = [];
   @Output() subCatSelected = new EventEmitter<SubCategory>();
 
-  onSelectLink() {
+  onSelectLink(subCat: SubCategory) {
+    this.subcategory = subCat;
     this.subCatSelected.emit(this.subcategory);
+  }
+
+  ngOnInit(): void {
+      
   }
 
 }

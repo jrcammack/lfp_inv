@@ -1,1 +1,6 @@
-<a (click)="onSelectLink()" class="dropdown-item" data-toggle="modal" data-target="#subCatItemModal">{{ subcategory.name }}</a>
+<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sub-Categories <span class="caret"></span></button>
+<ul class="dropdown-menu">
+    <li *ngFor="let subCategory of filteredSubCategories">
+        <a (click)="onSelectLink(subCategory)" class="dropdown-item" data-toggle="modal" data-target="#subCatItemModal">{{ subCategory.name }}</a>
+    </li>
+</ul>

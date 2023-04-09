@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,6 +11,8 @@ import { CategorySelectorComponent } from './inv-entry-feature/categories/catego
 import { SubCategoryItemComponent } from './inv-entry-feature/categories/sub-category-item/sub-category-item.component';
 import { appRoutes } from './app.routes';
 import { SubCatLinkComponent } from './inv-entry-feature/categories/sub-cat-link/sub-cat-link.component';
+import { ItemEntryFormComponent } from './inv-entry-feature/categories/item-entry-form/item-entry-form.component';
+import { ElectronicsFormLayoutComponent } from './inv-entry-feature/categories/item-entry-form/electronics-form-layout/electronics-form-layout.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +21,13 @@ import { SubCatLinkComponent } from './inv-entry-feature/categories/sub-cat-link
     CategorySelectorComponent,
     CategoryItemComponent,
     SubCategoryItemComponent,
-    SubCatLinkComponent
+    SubCatLinkComponent,
+    ItemEntryFormComponent,
+    ElectronicsFormLayoutComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     RouterOutlet,
     RouterModule.forRoot(appRoutes)

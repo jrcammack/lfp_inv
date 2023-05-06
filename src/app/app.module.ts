@@ -12,7 +12,10 @@ import { SubCategoryItemComponent } from './inv-entry-feature/categories/sub-cat
 import { appRoutes } from './app.routes';
 import { SubCatLinkComponent } from './inv-entry-feature/categories/sub-cat-link/sub-cat-link.component';
 import { ItemEntryFormComponent } from './inv-entry-feature/categories/item-entry-form/item-entry-form.component';
-import { ElectronicsFormLayoutComponent } from './inv-entry-feature/categories/item-entry-form/electronics-form-layout/electronics-form-layout.component';
+import { ElectronicsFormLayoutComponent } from './inv-entry-feature/categories/electronics-form-layout/electronics-form-layout.component';
+import { BulkEntryBodyComponent } from './inv-entry-feature/categories/sub-category-item/bulk-entry-body/bulk-entry-body.component';
+import { ItemEditFormComponent } from './inv-entry-feature/categories/item-edit-form/item-edit-form.component';
+import { GenericFormLayoutComponent } from './inv-entry-feature/categories/generic-form-layout/generic-form-layout.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { ElectronicsFormLayoutComponent } from './inv-entry-feature/categories/i
     SubCategoryItemComponent,
     SubCatLinkComponent,
     ItemEntryFormComponent,
-    ElectronicsFormLayoutComponent
+    ElectronicsFormLayoutComponent,
+    BulkEntryBodyComponent,
+    ItemEditFormComponent,
+    GenericFormLayoutComponent
   ],
   imports: [
     BrowserModule,

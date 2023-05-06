@@ -1,8 +1,26 @@
-<div style="display: grid; grid-template-columns: auto auto auto auto auto auto">
+<!--product search area-->
+<div class="well well-lg">
+    <div class="main" style="text-align: center;">
+        <h3 style="display: inline-block; width: 100%;">PRODUCT SEARCH</h3>
+  
+        <!-- Actual search box -->
+        <div class="form-group has-feedback has-search" style="display: inline-flex;">
+          <span class="glyphicon glyphicon-search form-control-feedback"></span>
+          <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchStr">
+          <button type="button" class="btn btn-primary" (click)="onSearch()">Search</button>
+        </div>
+        
+    </div>
+</div>
+
+<!--this container holds the categories we support-->
+<div style="display: grid; grid-template-columns: auto auto auto auto auto auto; column-gap: 17px; margin-left: 5px; margin-right: 5px">
     <div *ngFor="let category of categories; let i = index">
         <app-category-item (CatSelected)="onCatSelected($event)" [category]="category"></app-category-item>
     </div>
 </div>
+
+<!--this modal is displayed to select a subcategory that resides within a selected category-->
 <div id="subCatModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -13,9 +31,6 @@
             <div class="modal-body">
                 <div class="dropdown">
                     <app-sub-cat-link [filteredSubCategories]="filteredSubcategories" (subCatSelected)="onSubCatItemSelect($event)"></app-sub-cat-link>
-                    <!-- <ul class="dropdown-menu">
-                        <li *ngFor="let subCategory of filteredSubcategories"><app-sub-cat-link (subCatSelected)="onSubCatItemSelect($event)" [subcategory]="subCategory"></app-sub-cat-link></li>
-                    </ul> -->
                 </div>
             </div>
             <div class="modal-footer">
@@ -24,6 +39,69 @@
         </div>
     </div>
 </div>
-<app-sub-category-item [subcategory]="selectedSubCat"></app-sub-category-item>
+<app-sub-category-item [shipmentContext]="shipmentContext" [subcategory]="selectedSubCat"></app-sub-category-item>
 
+<!--Shipment context selector container-->
+<div class="well well-lg" style="width: 25%; margin-left: 5px">
+    <h3><span class="label label-info">{{ shipmentContext.partnerCode == 'none' ? 'No Shipment Selected' : shipmentContext.partnerCode + ' ' + shipmentContext.dateReceived }}</span></h3>
+    <div style="display: grid; grid-template-columns: auto auto; column-gap: 17px; row-gap: 10px">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#shipmentModal" (click)="onNewShipment()">New Shipment</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#shipmentModal" (click)="onPreviousShipment()">Add to Previous Shipment</button>
+    </div>
+</div>
+
+<!--Shipment modal to add a new shipment or select a previous one-->
+<div id="shipmentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Shipment</h4>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="!newShipment" class="dropdown">
+                    <ul class="list-group">
+                        <a href="#" class="list-group-item" *ngFor="let shipment of allShipments" id="{{shipment.shipmentID}}" (click)="onPreviousShipmentSelect($event)">{{ shipment.partnerCode + ' ' + shipment.dateReceived }}</a>
+                    </ul>
+                </div>
+                <div *ngIf="newShipment">
+                    <form (ngSubmit)="onFormSubmit(form)" #form="ngForm">
+                        <div class="form-group">
+                            <label for="partner">Partner</label>
+                            <select name="partner" id="partner" ngModel>
+                                <option *ngFor="let partner of allPartners; let index = index;" value="{{ partner.partnerID }}">{{ partner.partnerName }}</option>  
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Shipment Date</label>
+                            <input type="date" class="form-control" ngModel name="date">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Product details Modal-->
+<div id="prodDetailModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{ 'Editing Product: ' + currentProductContext.product_sku }}</h4>
+            </div>
+            <div class="modal-body">
+                <app-item-edit-form [currentProdContext]="currentProductContext"></app-item-edit-form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 

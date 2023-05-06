@@ -1,0 +1,7 @@
+<form (ngSubmit)="onFormSubmit(form)" #form="ngForm">
+    <div *ngFor="let item of [].constructor(itemCount); let i = index" class="form-group">
+        <label for="{{'sku' + (i + 1)}}">{{ 'Product' + ' ' + (i + 1) + ' ' + 'Sku' }}</label>
+        <input type="text" class="form-control" ngModel name="{{'sku' + (i + 1)}}">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

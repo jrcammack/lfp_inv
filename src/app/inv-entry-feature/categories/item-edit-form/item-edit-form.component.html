@@ -7,6 +7,7 @@
         <label for="shipment">Shipment ID</label>
         <input type="text" class="form-control" ngModel name="shipment">
     </div>
-    <app-electronics-form-layout *ngIf="SubCategoryContext.categoryID == 17"></app-electronics-form-layout>
+    <app-generic-form-layout *ngIf="currentProdContext.subCatContext.categoryID != 17 && currentProdContext.subCatContext.categoryID != 21"></app-generic-form-layout>
+    <app-electronics-form-layout *ngIf="currentProdContext.subCatContext.categoryID == 17 || currentProdContext.subCatContext.categoryID == 21"></app-electronics-form-layout>
     <button class="btn btn-primary" type="submit">Submit</button>
 </form>

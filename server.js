@@ -62,7 +62,7 @@ app.post('/bulkEntry', jsonParser, (req, res) => {
 })
 
 app.post('/searchProd', jsonParser, (req, res) => {
-    let queryTxtForDetails = 'SELECT p.product_sku, p.sub_category_id, p.shipment_id, p.chargerback_id, p.status_id, dt.detail_name, pd.detail_value' +
+    let queryTxtForDetails = 'SELECT p.product_sku, p.sub_category_id, p.shipment_id, p.chargerback_id, p.status_id, p.has_details, dt.detail_name, pd.detail_value' +
     ' FROM product p, detail_type dt, product_detail pd' +
     ' WHERE p.product_sku = pd.product_sku' +
     ' AND pd.detail_id = dt.detail_id' +
@@ -74,23 +74,30 @@ app.post('/searchProd', jsonParser, (req, res) => {
     client.query('SELECT has_details FROM product WHERE product_sku = \'' + req.body.search + '\'').catch(error => {
         console.log('unable to determine if item: ' + req.body.search + ' has details')
         console.log(error)
-        res.send(error)
+        res.send({"has_data": false, "msg": error})
     }).then(result => {
         if (result.rowCount == 1 && result.rows[0].has_details == true) {
             client.query(queryTxtForDetails).catch(error => {
                 console.log('there was an error finding the product with sku: ' + req.body.search)
                 console.log(error);
-                res.send(error)
-            }).then(result => {res.send(result)})
+                res.send({"has_data": false, "msg": error})
+            }).then(result => {res.send({"has_data": true, "result": result})})
 
         } else if (result.rowCount == 1 && result.rows[0].has_details == false) {
             client.query(queryTxtForNoDetails).catch(error => {
                 console.log('there was an error finding the product with sku: ' + req.body.search)
                 console.log(error);
-                res.send(error)
-            }).then(result => {res.send(result)})
+                res.send({"has_data": false, "msg": error})
+            }).then(result => {res.send({"has_data": true, "result": result})})
         } else {
-            res.send({"msg": "more than one product was found for the submitted SKU"})
+            if (result.rowCount > 1) {
+                res.send({"msg": "more than one product was found for the submitted SKU"})
+            } else if (result.rowCount == 0) {
+                res.send({"has_data": false, "msg": "no products were found"})
+            } else {
+                res.send({"has_data": false, "msg": "something else happened"})
+            }
+            
         }
     })
 })

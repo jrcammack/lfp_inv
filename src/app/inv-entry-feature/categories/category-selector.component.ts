@@ -26,7 +26,7 @@ export class CategorySelectorComponent  implements OnInit {
   partnerIdToCodePairings: Map<number, string> = new Map();
   shipmentIdToShipmentPairings: Map<number, Shipment> = new Map();
   searchStr: string = '';
-  currentProductContext: Product = new Product(null, new SubCategory(null, null, null), null, null, null)
+  currentProductContext: Product = new Product(null, new SubCategory(null, null, null), null, null, null, null)
   displayProductDetails: boolean = false;
 
   
@@ -127,19 +127,29 @@ export class CategorySelectorComponent  implements OnInit {
     let myObj = {"search": this.searchStr}
     this.http.post(/*'https://lfp-inv.herokuapp.com/searchProd'*/ 'http://localhost:4201/searchProd', myObj).subscribe(rsp => {
       let data: any = rsp;
-      if (data.rowCount < 1) {
-        alert('No Product with that SKU could be found');
-        return;
+      console.log(data);
+      if (data.has_data) {
+        if (data.result.rowCount == 1 && data.result.rows[0].has_details == false) {
+          let detailsArr: any = data.result.rows;
+          if (detailsArr == undefined || detailsArr == null) {
+            alert('could not get product details');
+            return;
+          }
+          this.currentProductContext = new Product(detailsArr[0].product_sku, this.subcategories.find((value, index) => {return value.id == detailsArr[0].sub_category_id}) ,detailsArr[0].shipment_id, detailsArr[0].chargerback_id, detailsArr[0].status_id, detailsArr[0].has_details);   
+        } else {
+          let detailsArr: any = data.result.rows;
+          if (detailsArr == undefined || detailsArr == null) {
+            alert('could not get product details');
+            return;
+          }
+          this.currentProductContext = new Product(detailsArr[0].product_sku, this.subcategories.find((value, index) => {return value.id == detailsArr[0].sub_category_id}) ,detailsArr[0].shipment_id, detailsArr[0].chargerback_id, detailsArr[0].status_id, detailsArr[0].has_details);
+          for (let prodDetail of data.result.rows) {
+            this.currentProductContext.detailsMap.set(prodDetail.detail_name, prodDetail.detail_value)
+          }
+        }
       } else {
-        let detailsArr: any = data.rows;
-        if (detailsArr == undefined || detailsArr == null) {
-          alert('could not get product details');
-          return;
-        }
-        this.currentProductContext = new Product(detailsArr[0].product_sku, this.subcategories.find((value, index) => {return value.id == detailsArr[0].sub_category_id}) ,detailsArr[0].shipment_id, detailsArr[0].chargerback_id, detailsArr[0].status_id);
-        for (let prodDetail of data.rows) {
-          this.currentProductContext.detailsMap.set(prodDetail.detail_name, prodDetail.detail_value)
-        }
+        alert(data.msg);
+        return;
       }
 
       this.displayProductDetails = true;

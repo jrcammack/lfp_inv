@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prettier_fix": "prettier -l --write"
+    "prettier_fix": "prettier -l --write \"**/*.js\" \"**/*.yml\" \"**/*.md\" \"**/*.json\" \"**/*.html\" \"**/*.css\""
   },
   "private": true,
   "dependencies": {
@@ -24,6 +24,7 @@
     "express": "^4.18.2",
     "jquery": "^3.6.4",
     "pg": "^8.10.0",
+    "prettier": "^2.8.8",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

@@ -1,13 +1,37 @@
 <form (ngSubmit)="onFormSubmit(form)" #form="ngForm">
-    <div class="form-group">
-        <label for="sku">Product Sku</label>
-        <input type="text" class="form-control" ngModel name="sku" [ngModel]="currentProdContext.product_sku">
-    </div>
-    <div class="form-group">
-        <label for="shipment">Shipment ID</label>
-        <input type="text" class="form-control" ngModel name="shipment" [ngModel]="currentProdContext.shipment_id">
-    </div>
-    <app-generic-form-layout [currentProdContext]="currentProdContext" *ngIf="currentProdContext.subCatContext.categoryID != 17 && currentProdContext.subCatContext.categoryID != 21"></app-generic-form-layout>
-    <app-electronics-form-layout [currentProdContext]="currentProdContext" *ngIf="currentProdContext.subCatContext.categoryID == 17 || currentProdContext.subCatContext.categoryID == 21"></app-electronics-form-layout>
-    <button class="btn btn-primary" type="submit">Submit</button>
+  <div class="form-group">
+    <label for="sku">Product Sku</label>
+    <input
+      type="text"
+      class="form-control"
+      ngModel
+      name="sku"
+      [ngModel]="currentProdContext.product_sku"
+    />
+  </div>
+  <div class="form-group">
+    <label for="shipment">Shipment ID</label>
+    <input
+      type="text"
+      class="form-control"
+      ngModel
+      name="shipment"
+      [ngModel]="currentProdContext.shipment_id"
+    />
+  </div>
+  <app-generic-form-layout
+    [currentProdContext]="currentProdContext"
+    *ngIf="
+      currentProdContext.subCatContext.categoryID != 17 &&
+      currentProdContext.subCatContext.categoryID != 21
+    "
+  ></app-generic-form-layout>
+  <app-electronics-form-layout
+    [currentProdContext]="currentProdContext"
+    *ngIf="
+      currentProdContext.subCatContext.categoryID == 17 ||
+      currentProdContext.subCatContext.categoryID == 21
+    "
+  ></app-electronics-form-layout>
+  <button class="btn btn-primary" type="submit">Submit</button>
 </form>

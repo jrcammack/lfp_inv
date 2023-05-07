@@ -1,28 +1,66 @@
-<div id="subCatItemModal" class="modal fade" role="dialog" (onblur)="resetItemCount()">
+<div
+  id="subCatItemModal"
+  class="modal fade"
+  role="dialog"
+  (onblur)="resetItemCount()"
+>
   <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" (click)="resetItemCount()">&times;</button>
-            <h4 class="modal-title">{{ subcategory.name }}</h4>
-            <div class="onoffswitch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" [(ngModel)]="bulkEntry">
-                <label class="onoffswitch-label" for="myonoffswitch">
-                    <span class="onoffswitch-inner"></span>
-                    <span class="onoffswitch-switch"></span>
-                </label>
-            </div>
-            <div class="form-group" [(hidden)]="!bulkEntry">
-                <label for="itemCount">Count</label>
-                <input type="number" id="itemCount" class="form-control" [(ngModel)]="itemCount">
-            </div>
-          </div>
-          <div class="modal-body">
-              <app-item-entry-form *ngIf="!bulkEntry" [SubCategoryContext]="subcategory"></app-item-entry-form>
-              <app-bulk-entry-body [subCategoryContext]="subcategory" [shipmentContext]="shipmentContext" [itemCount]="itemCount" *ngIf="bulkEntry"></app-bulk-entry-body>  
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" (click)="resetItemCount()">Close</button>
-          </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          (click)="resetItemCount()"
+        >
+          &times;
+        </button>
+        <h4 class="modal-title">{{ subcategory.name }}</h4>
+        <div class="onoffswitch">
+          <input
+            type="checkbox"
+            name="onoffswitch"
+            class="onoffswitch-checkbox"
+            id="myonoffswitch"
+            [(ngModel)]="bulkEntry"
+          />
+          <label class="onoffswitch-label" for="myonoffswitch">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+          </label>
+        </div>
+        <div class="form-group" [(hidden)]="!bulkEntry">
+          <label for="itemCount">Count</label>
+          <input
+            type="number"
+            id="itemCount"
+            class="form-control"
+            [(ngModel)]="itemCount"
+          />
+        </div>
       </div>
+      <div class="modal-body">
+        <app-item-entry-form
+          *ngIf="!bulkEntry"
+          [SubCategoryContext]="subcategory"
+        ></app-item-entry-form>
+        <app-bulk-entry-body
+          [subCategoryContext]="subcategory"
+          [shipmentContext]="shipmentContext"
+          [itemCount]="itemCount"
+          *ngIf="bulkEntry"
+        ></app-bulk-entry-body>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+          (click)="resetItemCount()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
   </div>
 </div>

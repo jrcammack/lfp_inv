@@ -1,12 +1,14 @@
 <form (ngSubmit)="onFormSubmit(form)" #form="ngForm">
-    <div class="form-group">
-        <label for="sku">Product Sku</label>
-        <input type="text" class="form-control" ngModel name="sku">
-    </div>
-    <div class="form-group">
-        <label for="shipment">Shipment ID</label>
-        <input type="text" class="form-control" ngModel name="shipment">
-    </div>
-    <app-electronics-form-layout *ngIf="SubCategoryContext.categoryID == 17"></app-electronics-form-layout>
-    <button class="btn btn-primary" type="submit">Submit</button>
+  <div class="form-group">
+    <label for="sku">Product Sku</label>
+    <input type="text" class="form-control" ngModel name="sku" />
+  </div>
+  <div class="form-group">
+    <label for="shipment">Shipment ID</label>
+    <input type="text" class="form-control" ngModel name="shipment" />
+  </div>
+  <app-electronics-form-layout
+    *ngIf="SubCategoryContext.categoryID == 17"
+  ></app-electronics-form-layout>
+  <button class="btn btn-primary" type="submit">Submit</button>
 </form>

@@ -1,0 +1,12 @@
+dist
+node_modules
+.angular
+assets
+angular.json
+get_prod_details.sql
+package-lock.json
+package.json
+README.md
+tsconfig.app.json
+tsconfig.json
+tsconfig.spec.json

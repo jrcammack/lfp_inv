@@ -1,34 +1,34 @@
 <div style="display: grid; grid-template-columns: auto auto; column-gap: 17px">
     <div class="form-group">
-        <label for="brand">Brand</label>
-        <input type="text" class="form-control" ngModel name="brand">
+        <label for="brand">'Brand'</label>
+        <input type="text" class="form-control" ngModel name="brand" [value]="currentProdContext.detailsMap.get('Brand')">
     </div>
     <div class="form-group">
         <label for="model">Model</label>
-        <input type="text" class="form-control" ngModel name="model">
+        <input type="text" class="form-control" ngModel name="model" [value]="currentProdContext.detailsMap.get('Model')">
     </div>
     <div class="form-group">
         <label for="color">Gender</label>
-        <input type="text" class="form-control" ngModel name="gender">
+        <input type="text" class="form-control" ngModel name="gender" [value]="currentProdContext.detailsMap.get('Gender')">
     </div>
     <div class="form-group">
         <label for="color">Size</label>
-        <input type="text" class="form-control" ngModel name="size">
+        <input type="text" class="form-control" ngModel name="size" [value]="currentProdContext.detailsMap.get('Size')">
     </div>
     <div class="form-group">
         <label for="color">Color</label>
-        <input type="text" class="form-control" ngModel name="color">
+        <input type="text" class="form-control" ngModel name="color" [value]="currentProdContext.detailsMap.get('Color')">
     </div>
     <div class="form-group">
         <label for="color">UPC</label>
-        <input type="text" class="form-control" ngModel name="upc">
+        <input type="text" class="form-control" ngModel name="upc" [value]="currentProdContext.detailsMap.get('UPC')">
     </div>
     <div class="form-group">
         <label for="color">Condition</label>
-        <input type="text" class="form-control" ngModel name="condition">
+        <input type="text" class="form-control" ngModel name="condition" [value]="currentProdContext.detailsMap.get('Condition')">
     </div>
     <div class="form-group">
         <label for="color">Notes</label>
-        <input type="text" class="form-control" ngModel name="notes">
+        <input type="text" class="form-control" ngModel name="notes" [value]="currentProdContext.detailsMap.get('Notes')">
     </div>
 </div>

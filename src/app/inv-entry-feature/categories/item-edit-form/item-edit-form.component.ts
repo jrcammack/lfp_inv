@@ -19,6 +19,15 @@ export class ItemEditFormComponent {
   }
 
   onFormSubmit(formObj: NgForm) {
+    let myReqObj = {"prodContext": this.currentProdContext, "formValues": formObj.value};
+    this.http.post(/*'https://lfp-inv.herokuapp.com/editItem'*/ 'http://localhost:4201/editItem', myReqObj).subscribe(rsp => {
+      let data: any = rsp;
+      if (data.updated == true) {
+        alert('item updated')
+      } else {
+        alert('item not updated')
+      }
+    })
 
   }
 

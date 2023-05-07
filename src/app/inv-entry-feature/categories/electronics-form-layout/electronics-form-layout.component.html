@@ -1,50 +1,50 @@
 <div style="display: grid; grid-template-columns: auto auto; column-gap: 17px">
     <div class="form-group">
         <label for="brand">Brand</label>
-        <input type="text" class="form-control" ngModel name="brand">
+        <input type="text" class="form-control" ngModel name="brand" [ngModel]="currentProdContext.detailsMap.get('Brand')">
     </div>
     <div class="form-group">
         <label for="model">Model</label>
-        <input type="text" class="form-control" ngModel name="model">
+        <input type="text" class="form-control" ngModel name="model" [ngModel]="currentProdContext.detailsMap.get('Model')">
     </div>
     <div class="form-group">
         <label for="generation">Generation</label>
-        <input type="text" class="form-control" ngModel name="generation">
+        <input type="text" class="form-control" ngModel name="generation" [ngModel]="currentProdContext.detailsMap.get('Generation')">
     </div>
     <div class="form-group">
         <label for="memory">Memory Size</label>
-        <input type="text" class="form-control" ngModel name="memory">
+        <input type="text" class="form-control" ngModel name="memory" [ngModel]="currentProdContext.detailsMap.get('Memory Size')">
     </div>
     <div class="form-group">
         <label for="color">Color</label>
-        <input type="text" class="form-control" ngModel name="color">
+        <input type="text" class="form-control" ngModel name="color" [ngModel]="currentProdContext.detailsMap.get('Color')">
     </div>
     <div class="form-group">
         <label for="mModel">M-Model</label>
-        <input type="text" class="form-control" ngModel name="mModel">
+        <input type="text" class="form-control" ngModel name="mModel" [ngModel]="currentProdContext.detailsMap.get('M-Model')">
     </div>
     <div class="form-group">
         <label for="aModel">A-Model</label>
-        <input type="text" class="form-control" ngModel name="aModel">
+        <input type="text" class="form-control" ngModel name="aModel" [ngModel]="currentProdContext.detailsMap.get('A-Model')">
     </div>
     <div class="form-group">
         <label for="batteryHealth">Battery Health</label>
-        <input type="text" class="form-control" ngModel name="batteryHealth">
+        <input type="text" class="form-control" ngModel name="batteryHealth" [ngModel]="currentProdContext.detailsMap.get('Battery Health')">
     </div>
     <div class="form-group">
         <label for="cycles">Battery Cycle Count</label>
-        <input type="text" class="form-control" ngModel name="cycles">
+        <input type="text" class="form-control" ngModel name="cycles" [ngModel]="currentProdContext.detailsMap.get('Battery Cycle Count')">
     </div>
     <div class="form-group">
         <label for="imei">IMEI</label>
-        <input type="text" class="form-control" ngModel name="imei">
+        <input type="text" class="form-control" ngModel name="imei" [ngModel]="currentProdContext.detailsMap.get('IMEI')">
     </div>
     <div class="form-group">
         <label for="erasure">Erasure Result</label>
-        <input type="text" class="form-control" ngModel name="erasure">
+        <input type="text" class="form-control" ngModel name="erasure" [ngModel]="currentProdContext.detailsMap.get('Erasure Result')">
     </div>
     <div class="form-group">
         <label for="diagnostic">Diagnostic Result</label>
-        <input type="text" class="form-control" ngModel name="diagnostic">
+        <input type="text" class="form-control" ngModel name="diagnostic" [ngModel]="currentProdContext.detailsMap.get('Diagnostic Result')">
     </div>
 </div>

@@ -18,4 +18,14 @@ function enterBulkItems(reqData) {
     return sql + valuesTxt;
 }
 
-module.exports = { enterElectronicsItem, enterBulkItems };
+function editItem(reqBody) {
+    let sql = '';
+    switch(reqBody.prodContext.subCatContext.categoryID) {
+        case 17:
+        sql = 'UPDATE product_detail SET'    
+    }
+
+    return sql;
+}
+
+module.exports = { enterElectronicsItem, enterBulkItems, editItem };

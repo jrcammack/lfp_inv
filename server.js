@@ -1,9 +1,12 @@
+const { convertJsObjToMap, ProdDetails } = require("./src/server/Util.js");
 const queryFunctions = require("./src/server/queryFunctions.js");
 const { Client } = require("pg");
 var express = require("express"),
   app = express();
 var bodyParser = require("body-parser"),
   jsonParser = bodyParser.json();
+var detailMap = new Map();
+var prodDetailTypes = ProdDetails;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -15,6 +18,13 @@ const client = new Client({
   },
 });
 client.connect();
+
+// update detailsMap with all current prod detail types and keys
+client.query("SELECT * FROM detail_type").then((rsp) => {
+  for (row of rsp.rows) {
+    detailMap.set(row.detail_name, row.detail_id);
+  }
+});
 
 app.use(express.static("dist"));
 
@@ -167,7 +177,14 @@ app.post("/enterItem", jsonParser, (req, res) => {
 });
 
 app.post("/editItem", jsonParser, (req, res) => {
-  let query = queryFunctions.editItem(req.body);
+  console.log(req.body);
+  var detailMapOfUpdates = convertJsObjToMap(req.body.formValues);
+  let query = queryFunctions.editItem(req.body, detailMapOfUpdates);
+  console.log(query);
+  client.query(query).then((rsp) => {
+    console.log(rsp);
+    res.send(rsp);
+  });
 });
 
 app.set("port", process.env.PORT || 4201);

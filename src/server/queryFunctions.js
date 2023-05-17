@@ -31,14 +31,55 @@ function enterBulkItems(reqData) {
   return sql + valuesTxt;
 }
 
-function editItem(reqBody) {
-  let sql = "";
-  switch (reqBody.prodContext.subCatContext.categoryID) {
-    case 17:
-      sql = "UPDATE product_detail SET";
+function editItem(reqBody, prodDetailsToUpdate) {
+  let sqlTxtComplete = "";
+
+  for (let [key, value] of prodDetailsToUpdate) {
+    sqlTxt1 =
+      "INSERT INTO product_detail (product_sku, detail_id, detail_value)\n" +
+      "VALUES ";
+
+    sqlTxt2 =
+      "ON CONFLICT (product_sku, detail_id) DO UPDATE\n" +
+      "SET detail_value = '";
+
+    if (key == "sku" || key == "shipment") {
+      continue;
+    } else {
+      sqlTxt1 +=
+        "('" +
+        prodDetailsToUpdate.get("sku") +
+        "', " +
+        key +
+        ", '" +
+        value +
+        "')\n";
+
+      sqlTxt2 +=
+        value +
+        "'\n" +
+        "WHERE product_detail.product_sku = '" +
+        prodDetailsToUpdate.get("sku") +
+        "'\n" +
+        "AND product_detail.detail_id = " +
+        key +
+        ";\n\n";
+
+      sqlTxtComplete += sqlTxt1 + sqlTxt2;
+    }
   }
 
+  return sqlTxtComplete;
+}
+
+function getDetailTypesSql() {
+  sql = "SELECT * FROM detail_type;";
   return sql;
 }
 
-module.exports = { enterElectronicsItem, enterBulkItems, editItem };
+module.exports = {
+  enterElectronicsItem,
+  enterBulkItems,
+  editItem,
+  getDetailTypesSql,
+};

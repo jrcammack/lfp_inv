@@ -39,7 +39,7 @@ export class CategorySelectorComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {
     http
       .get(
-        /*'https://lfp-inv.herokuapp.com/categories'*/ "http://localhost:4201/categories"
+        'https://lfp-inv.herokuapp.com/categories' /*"http://localhost:4201/categories"*/
       )
       .subscribe((rspData) => {
         let data: any = rspData;
@@ -52,7 +52,7 @@ export class CategorySelectorComponent implements OnInit {
 
     http
       .get(
-        /*'https://lfp-inv.herokuapp.com/subcategories'*/ "http://localhost:4201/subcategories"
+        'https://lfp-inv.herokuapp.com/subcategories' /*"http://localhost:4201/subcategories"*/
       )
       .subscribe((rspData) => {
         let data: any = rspData;
@@ -69,7 +69,7 @@ export class CategorySelectorComponent implements OnInit {
 
     http
       .get(
-        /*'https://lfp-inv.herokuapp.com/subcategories'*/ "http://localhost:4201/partners"
+        'https://lfp-inv.herokuapp.com/partners' /*"http://localhost:4201/partners"*/
       )
       .subscribe((rspdata) => {
         let data: any = rspdata;
@@ -83,7 +83,7 @@ export class CategorySelectorComponent implements OnInit {
 
     http
       .get(
-        /*'https://lfp-inv.herokuapp.com/subcategories'*/ "http://localhost:4201/shipments"
+        'https://lfp-inv.herokuapp.com/shipments' /*"http://localhost:4201/shipments"*/
       )
       .subscribe((rspdata) => {
         let data: any = rspdata;
@@ -134,7 +134,7 @@ export class CategorySelectorComponent implements OnInit {
     let name = "";
     this.http
       .post(
-        /*'https://lfp-inv.herokuapp.com/enterItem'*/ "http://localhost:4201/addShipment",
+        'https://lfp-inv.herokuapp.com/addShipment' /*"http://localhost:4201/addShipment"*/,
         form.value
       )
       .subscribe((rsp) => {
@@ -143,7 +143,7 @@ export class CategorySelectorComponent implements OnInit {
 
     this.http
       .get(
-        /*'https://lfp-inv.herokuapp.com/enterItem'*/ "http://localhost:4201/ShipmentID"
+        'https://lfp-inv.herokuapp.com/ShipmentID' /*"http://localhost:4201/ShipmentID"*/
       )
       .subscribe((rsp) => {
         let data: any = rsp;
@@ -167,7 +167,7 @@ export class CategorySelectorComponent implements OnInit {
   updateShipmentList() {
     this.http
       .get(
-        /*'https://lfp-inv.herokuapp.com/subcategories'*/ "http://localhost:4201/shipments"
+        'https://lfp-inv.herokuapp.com/shipments' /*"http://localhost:4201/shipments"*/
       )
       .subscribe((rspdata) => {
         let data: any = rspdata;
@@ -200,7 +200,7 @@ export class CategorySelectorComponent implements OnInit {
     let myObj = { search: this.searchStr };
     this.http
       .post(
-        /*'https://lfp-inv.herokuapp.com/searchProd'*/ "http://localhost:4201/searchProd",
+        'https://lfp-inv.herokuapp.com/searchProd' /*"http://localhost:4201/searchProd"*/,
         myObj
       )
       .subscribe((rsp) => {
